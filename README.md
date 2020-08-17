@@ -179,13 +179,14 @@ Access the Jaeger dashboard by going to the Konvoy ops-portal. If you dont have 
 ```bash
 konvoy get ops-portal
 ```
-![Jaeger Dashboard](../images/istio-tracing-details.png)
+![Jaeger Dashboard](images/istio-tracing-list.png)
+
 
 
 #### Step 10 
 Click on the most recent trace at the top to see the details corresponding to the latest request to the /productpage:
 
-![Alt text](../images/istio-tracing-details.png?raw=true "Jaeger Dashboard")
+![Alt text](/images/istio-tracing-details.png?raw=true "Jaeger Dashboard")
 
 #### Step 11
 The trace is comprised of a set of spans, where each span corresponds to a Bookinfo service, invoked during the execution of a /productpage request, or internal Istio component, for example: istio-ingressgateway.
