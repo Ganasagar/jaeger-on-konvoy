@@ -190,9 +190,3 @@ Click on the most recent trace at the top to see the details corresponding to th
 
 #### Step 11
 The trace is comprised of a set of spans, where each span corresponds to a Bookinfo service, invoked during the execution of a /productpage request, or internal Istio component, for example: istio-ingressgateway.
-
-
-##Modifying Jaeger installation. 
-
-#### Step 1
-#### Step 2
