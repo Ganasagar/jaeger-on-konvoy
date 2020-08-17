@@ -179,8 +179,8 @@ Access the Jaeger dashboard by going to the Konvoy ops-portal. If you dont have 
 ```bash
 konvoy get ops-portal
 ```
-![Alt text](../images/jaeger.png?raw=true "Jaeger Dashboard")
-![Alt text](../images/istio-tracing-details?raw=true "Jaeger Dashboard")
+![Jaeger Dashboard](../images/istio-tracing-details.png)
+
 
 #### Step 10 
 Click on the most recent trace at the top to see the details corresponding to the latest request to the /productpage:
