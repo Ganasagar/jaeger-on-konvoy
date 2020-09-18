@@ -14,7 +14,10 @@ Any changes to the collector will need modifications to the `tracing` charts. Al
 Modifying sampling rate is one of the most common use-cases while using Jaeger. Since 
 
 
-#### Step 1
+#### Changing sampling rate for Jaeger 
+Jaeger agent responsibilities are taken up by Envoy proxy which runs a sidecar proxy in a service mesh. In order to be able to tweak the trace-sampling for Istio we would need to pass the value to pilot in Istio's control plane. The pilot then configures all the proxies to modify the sampling rate. Below you can see an example implementing the same change 
+
+
 Open up the `cluster.yaml` and add the paramters for the configuring sampling rate as listed below. 
 ```bash
 - name: istio
@@ -26,7 +29,53 @@ Open up the `cluster.yaml` and add the paramters for the configuring sampling ra
           pilot:
             traceSampling: 5.0
 ```
-#### Step 2
+
+
+### Changing just resource specifications for Jaeger Deployment.
+Jaeger in Istio is renamed to be used as **tracing**. Any modifications to the deployment itself would need to go under the tracing chart. Below is an example depicting the same.
+```bash
+- name: istio
+  enabled: true
+  values: |
+    istioOperator:
+      values:
+        global:
+          tracing:
+            jaeger:
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 2048Mi
+                requests:
+                  cpu: 150m
+                  memory: 900Mi
+```
+
+
+### Chaging both Jaeger resource & sampling rate
+```bash
+- name: istio
+  enabled: true
+  values: |
+    istioOperator:
+      values:
+        global:
+          pilot:
+            traceSampling: 3.0
+          tracing:
+            jaeger:
+              resources:
+                limits:
+                  cpu: 1000m
+                  memory: 2048Mi
+                requests:
+                  cpu: 150m
+                  memory: 900Mi
+          
+  
+``` 
+
+#### Apply changes in Istio
 
 Once you are done with modifying the `cluster.yaml` with the options you desire like above. redeploy the addons. 
 ```bash
